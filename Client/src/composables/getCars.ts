@@ -6,7 +6,7 @@ export function getCars() {
 
   const load = async (): Promise<void> => {
     try {
-      let data = await fetch('http://localhost:3000/cars')
+      let data = await fetch('https://cars-showroom-wkh5.onrender.com/cars')
       if (!data.ok) {
         throw new Error('Network response was not ok')
       }

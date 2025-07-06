@@ -22,10 +22,6 @@ export default defineComponent({
   components: {
     SingleCarDetails,
   },
-  setup() {
-    // No need to return id, it is already available as a prop
-    return {}
-  },
 })
 </script>
 

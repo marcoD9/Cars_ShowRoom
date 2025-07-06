@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import SingleCarDetails from '@/components/SingleCarDetails.vue'
 
@@ -22,10 +22,9 @@ export default defineComponent({
   components: {
     SingleCarDetails,
   },
-  setup(props) {
-    return {
-      id: props.id, // Expose the id to the template
-    }
+  setup() {
+    // No need to return id, it is already available as a prop
+    return {}
   },
 })
 </script>

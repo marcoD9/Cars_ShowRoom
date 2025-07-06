@@ -1,7 +1,8 @@
+import type { Car } from '@/types/cars'
 import { ref } from 'vue'
 export function getCars() {
   // This function fetches the list of cars from the API and returns them
-  const cars = ref([])
+  const cars = ref<Car[]>([])
   const error = ref<string | null>(null)
 
   const load = async (): Promise<void> => {

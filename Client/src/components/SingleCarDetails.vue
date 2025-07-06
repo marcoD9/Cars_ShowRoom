@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, onMounted, watch } from 'vue'
 import { getSingleCar } from '@/composables/getSingleCar'
 
@@ -41,9 +41,11 @@ export default defineComponent({
       }
     })
 
+    // Watch changes for props.id
     watch(
       () => props.id,
       (newId, oldId) => {
+        // Change the oldId to newId
         if (newId && newId !== oldId) {
           load(newId) // Reload when the prop changes
         }

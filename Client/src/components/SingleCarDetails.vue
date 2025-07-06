@@ -3,22 +3,23 @@
     <p>Something went wrong:</p>
     <p>{{ error }}</p>
   </div>
-  <div v-else-if="!car && !error" class="loading-message">
-    <p>Loading car details...</p>
-  </div>
-  <div v-else class="car-details">
-    <h2>{{ car.name }}</h2>
-    <img :src="car.url" :alt="car.name" class="car-image" />
+
+  <div v-else-if="car" class="car-details">
+    <img :src="car.url" :alt="car.model" class="car-image" />
     <p><strong>Model:</strong> {{ car.model }}</p>
     <p><strong>Year:</strong> {{ car.year }}</p>
     <p><strong>Price:</strong> ${{ car.price }}</p>
     <p><strong>Description:</strong> {{ car.description }}</p>
   </div>
+  <div v-else class="loading-message">
+    <p>Loading car details...</p>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, watch } from 'vue'
+import { defineComponent, onMounted, watch, type Ref } from 'vue'
 import { getSingleCar } from '@/composables/getSingleCar'
+import type { Car } from '../types/cars'
 
 export default defineComponent({
   name: 'SingleCarDetails',
@@ -30,7 +31,11 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { car, error, load } = getSingleCar()
+    const { car, error, load } = getSingleCar() as {
+      car: Ref<Car | null>
+      error: Ref<string | null>
+      load: (id: string) => void
+    }
 
     onMounted(() => {
       const carIdToLoad = props.id // Get the ID from the prop

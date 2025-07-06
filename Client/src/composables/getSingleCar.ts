@@ -1,11 +1,12 @@
+import type { Car } from '@/types/cars'
 import { ref } from 'vue'
 
 export function getSingleCar() {
-  const car = ref<any | null>(null)
+  const car = ref<Car | null>(null)
   const error = ref<string | null>(null)
   const loading = ref(false)
 
-  const load = async (id: any) => {
+  const load = async (id: string) => {
     // This 'id' is what you receive from SingleCarDetails.vue
     loading.value = true
     error.value = null // Clear previous errors

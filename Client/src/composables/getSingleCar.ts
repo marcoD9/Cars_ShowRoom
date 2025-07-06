@@ -4,11 +4,10 @@ import { ref } from 'vue'
 export function getSingleCar() {
   const car = ref<Car | null>(null)
   const error = ref<string | null>(null)
-  const loading = ref(false)
 
   const load = async (id: string) => {
     // This 'id' is what you receive from SingleCarDetails.vue
-    loading.value = true
+
     error.value = null // Clear previous errors
     car.value = null // Clear previous car data
 
@@ -34,10 +33,7 @@ export function getSingleCar() {
         console.error('Error fetching car:', err)
         error.value = String(err)
       }
-    } finally {
-      loading.value = false
     }
   }
-
-  return { car, error, loading, load }
+  return { car, error, load }
 }

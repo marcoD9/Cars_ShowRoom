@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, watch, type Ref } from 'vue'
+import { defineComponent, onMounted, type Ref } from 'vue'
 import { getSingleCar } from '@/composables/getSingleCar'
 import type { Car } from '../types/cars'
 
@@ -45,18 +45,6 @@ export default defineComponent({
         error.value = 'Car ID not found. Please provide an ID via prop.'
       }
     })
-
-    // Watch changes for props.id
-    watch(
-      () => props.id,
-      (newId, oldId) => {
-        // Change the oldId to newId
-        if (newId && newId !== oldId) {
-          load(newId) // Reload when the prop changes
-        }
-      },
-      { immediate: false }, // Don't trigger on initial load
-    )
 
     return {
       car,

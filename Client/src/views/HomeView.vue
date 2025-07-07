@@ -3,15 +3,8 @@
     <div class="hero">
       <HeroSection />
     </div>
-    <div class="description">
-      <p>
-        Step into a world of automotive excellence. Our showroom features an exceptional collection
-        of new and pre-owned vehicles, meticulously selected to fulfill every desire. Take the first
-        step: your next adventure awaits
-      </p>
-      <button v-if="!isVisible" @click="isVisible = true">Explore our collection</button>
-    </div>
-
+    <DescriptionCard />
+    <button v-if="!isVisible" @click="isVisible = true">Explore our collection</button>
     <div v-if="isVisible" class="cars-section">
       <CarsComponent />
     </div>
@@ -22,12 +15,14 @@
 import { defineComponent } from 'vue'
 import CarsComponent from '../components/CarsComponent.vue'
 import HeroSection from '@/components/HeroSection.vue'
+import DescriptionCard from '@/components/DescriptionCard.vue'
 
 export default defineComponent({
   name: 'HomeView',
   components: {
     CarsComponent,
     HeroSection,
+    DescriptionCard,
   },
   data() {
     return {
@@ -43,22 +38,21 @@ export default defineComponent({
 }
 
 button {
+  height: 10vh;
+  width: 20vw;
   border-radius: 5px;
   padding: 10px 20px;
   background-color: var(--secondary-text);
   color: var(--primary-text);
   border: none;
   cursor: pointer;
+  margin: 3rem 0;
 }
 button:hover {
   transition:
-    background-color 0.3s,
+    background-color 0.5s,
     color 0.3s;
-  background-color: var(--tertiary-text);
-}
-
-.description {
-  text-align: center;
-  margin: 2rem auto;
+  background-color: var(--primary-color);
+  color: var(--secondary-text);
 }
 </style>

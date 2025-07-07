@@ -61,7 +61,6 @@ img.background-image {
   align-items: center;
   text-align: center; /* Center text if lines wrap */
   box-sizing: border-box; /* Include padding in width/height calculation */
-  color: #dbd8d8;
 }
 
 h1 {

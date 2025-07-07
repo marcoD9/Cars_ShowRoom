@@ -31,7 +31,7 @@ import { RouterLink, RouterView } from 'vue-router'
   top: 0;
   left: 0;
   width: 100%;
-  height: 5vh;
+  height: 6vh;
   box-shadow: var(--shadow);
   display: flex;
   align-items: center;
@@ -40,12 +40,12 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 .link {
-  margin: auto;
-  padding: auto;
+  font-size: 1.4rem;
   color: var(--primary-text);
   text-decoration: none;
   padding: 1rem;
   font-weight: bold;
+  margin: 0 auto;
 }
 
 .link:hover {

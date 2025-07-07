@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="car-wrapper">
     <div v-if="error" class="error-message">
       <p>Something went wrong:</p>
       <p>{{ error }}</p>
@@ -58,12 +58,15 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.car-wrapper {
+  background-color: var(--secondary-color);
+}
 /* --- Main Card Container --- */
 .car-details-card {
   margin: 2rem auto; /* More vertical margin */
   padding: 0; /* Remove padding from the main card to make image stick to edge */
   border-radius: 5px;
-  background: #fafafa;
+  background: var(--primary-color);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: row;
@@ -102,14 +105,14 @@ export default defineComponent({
 
 .error-message {
   color: var(--secondary-text);
-  background-color: #ffebee;
-  border: 1px solid #ef9a9a;
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-text);
 }
 
 .loading-message {
   color: var(--tertiary-text);
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
 }
 
 /* --- Text Styling --- */

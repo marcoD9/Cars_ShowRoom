@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <h2>Our Amazing Cars</h2>
+  <div class="cars-wrapper">
     <div v-if="error" class="error-message">
       <p>Oops! Something went wrong:</p>
       <p>{{ error }}</p>
     </div>
 
-    <div v-else-if="cars.length === 0 && !error">
+    <div class="loading-message" v-else-if="cars.length === 0 && !error">
       <p>Loading cars...</p>
     </div>
 
@@ -17,12 +16,10 @@
         :to="{ name: 'car-details', params: { id: car.id } }"
         class="car-card-link"
       >
-        <!-- Use router-link to navigate to car details -->
-        <div class="car-card">
-          <img :src="car.url" :alt="car.model" class="car-image" />
+        <div class="car-card" :style="{ backgroundImage: 'url(' + car.url + ')' }">
           <div class="car-details">
             <h3>{{ car.model }}</h3>
-            <p>Price : {{ car.price }}$</p>
+            <p>Price : {{ car.price }} $</p>
             <p>Year: {{ car.year }}</p>
           </div>
         </div>
@@ -58,78 +55,142 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* --- Error Message --- */
+.cars-wrapper {
+  background-color: var(--secondary-color);
+  padding: 2rem 0;
+}
+
+/* --- Error Message/Loading Messge --- */
+.error-message,
+.loading-message {
+  padding: 1.5rem;
+  margin: 2rem auto;
+  text-align: center;
+  border-radius: 8px;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+}
 .error-message {
   color: var(--secondary-text);
-  border: 1px solid red;
-  padding: 1rem;
-  margin: 2rem 0;
-  background-color: #ffeaea;
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-text);
+}
+
+.loading-message {
+  color: var(--tertiary-text);
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
 }
 
 /* --- Cars Container --- */
 .cars-container {
   display: flex;
-  flex-direction: column; /* Stacks cards in a column */
-  align-items: center; /* Centers the cards horizontally */
-  gap: 5rem;
-  padding: 2rem 0; /* Add some vertical padding for spacing */
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
 }
 
-/* --- Car Card Link (Router-link wrapper) --- */
+/* --- Car Card Link --- */
 .car-card-link {
-  text-decoration: none; /* Remove default underline from links */
-  color: inherit; /* Inherit text color from parent */
-  width: 90%;
+  text-decoration: none;
+  color: inherit;
+  width: 95vw;
+  max-width: 800px; /* Set a max-width for large screens */
 }
 
 /* --- Car Card --- */
 .car-card {
-  display: flex; /* Makes elements inside the card display in a row */
-  flex-direction: row; /* Explicitly sets row direction */
-  align-items: center; /* Vertically aligns image and text details */
+  position: relative; /* Crucial for positioning text over the image */
+  height: 50vh; /* Define a height for the card */
+  min-height: 250px; /* Ensure a minimum height for smaller viewports */
+  background-size: cover; /* Make sure the background image covers the whole area */
+  background-position: center center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent image repetition */
   border-radius: 25px;
-  background-color: #ffffff;
-  transition:
-    transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
+  overflow: hidden;
   cursor: pointer;
-  max-height: 40vh; /* Fixed height for the card */
-  overflow: hidden; /* Hide content if it overflows the fixed height */
-  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  /* Optional: Overlay for better text readability */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.319);
+    z-index: 1;
+  }
+
+  transition: transform 0.2s ease-in-out;
 }
 
 .car-card:hover {
+  transition: ease-in-out 0.5s;
   transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  &::before {
+    background-color: rgba(73, 73, 73, 0.247);
+  }
 }
 
-/* --- Car Image --- */
-.car-image {
-  width: 40%; /* Image takes 40% of the card's width */
-  height: 100%; /* Image fills its allocated height */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-  border-radius: 25px;
-}
-
-/* --- Car Details (Text content) --- */
+/* --- Car Details --- */
 .car-details {
+  position: relative; /* Makes z-index effective for details */
+  z-index: 2; /* Ensures text is above the background image and overlay */
+  color: var(--primary-text);
+  padding: 1.5rem; /* Padding inside the details box */
   display: flex;
-  flex-direction: column; /* Stack text elements vertically */
-  justify-content: center; /* Center content vertically within its area */
-  flex-grow: 1; /* Allows details to take up remaining space */
-  text-align: center; /* Align text to the center */
-  padding: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
 }
 
+.car-details:hover {
+  transition: ease-in-out 0.5s;
+  color: var(--secondary-text);
+}
 .car-details h3 {
-  color: var(--tertiary-text);
-  font-size: 1.2em;
+  font-size: 1.8em;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
 }
 
 .car-details p {
-  color: var(--tertiary-text);
-  font-size: 0.95em;
-  margin: 0.2rem;
+  font-size: 1.1em;
+  margin: 0.2rem 0;
+  text-align: left;
+  width: 100%;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .car-card-link {
+    width: 95vw; /* Make cards slightly wider on smaller screens */
+  }
+
+  .car-card {
+    height: 35vh; /* Adjust height for mobile */
+  }
+
+  .car-details h3 {
+    font-size: 1.5em; /* Smaller heading on mobile */
+  }
+
+  .car-details p {
+    font-size: 1em; /* Smaller text on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .car-card {
+    height: 30vh; /* Even smaller height for very small screens */
+  }
 }
 </style>

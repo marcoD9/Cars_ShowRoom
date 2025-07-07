@@ -46,7 +46,7 @@ export default defineComponent({
 }
 
 .about-content {
-  background-color: #f9f9f9; /* Light background for the content box */
+  background-color: var(--primary-color);
   border-radius: 10px; /* Slightly rounded corners */
   padding: 2rem;
   box-shadow: var(--shadow);
@@ -64,7 +64,7 @@ h2 {
   font-size: 1.8em;
   margin-top: 40px; /* Space above contact info */
   margin-bottom: 1remx;
-  border-bottom: 2px solid #eee; /* Underline for separation */
+  border-bottom: 2px solid var(--secondary-color); /* Underline for separation */
   padding-bottom: 0.5rem;
 }
 

@@ -1,6 +1,5 @@
 <template>
   <div class="car-details-view">
-    <h1>Car Information</h1>
     <SingleCarDetails :id="id" />
     <!-- Pass the id prop to CarDetails from the route -->
   </div>
@@ -30,14 +29,8 @@ export default defineComponent({
   max-width: 100%;
   margin: 2rem auto;
   padding: 1.5rem;
-  background-color: #fff;
   border-radius: 8px;
   text-align: center;
-}
-
-h1 {
-  color: var(--tertiary-text);
-  margin-bottom: 1.5rem;
-  font-size: 2.2em;
+  background-color: var(--secondary-color);
 }
 </style>

@@ -1,0 +1,9 @@
+:root {
+  --primary-text: rgb(239, 238, 238);
+  --secondary-text: rgb(189, 39, 39);
+  --tertiary-text: rgb(50, 49, 49);
+  --primary-color: rgb(255, 255, 255);
+  --secondary-color: rgb(255, 255, 255);
+  --shadow: 0 2px 5px rgba(0, 0, 0, 0.799);
+  --shadow-hover: 0 3px 6px rgba(0, 0, 0, 0.87);
+}

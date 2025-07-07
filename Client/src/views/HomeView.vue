@@ -38,10 +38,11 @@ export default defineComponent({
 }
 
 button {
-  height: 10vh;
-  width: 20vw;
-  border-radius: 5px;
-  padding: 10px 20px;
+  font-size: 1.5rem;
+  height: 20vh;
+  width: 40vw;
+  border-radius: 15px;
+  padding: 1rem;
   background-color: var(--secondary-text);
   color: var(--primary-text);
   border: none;

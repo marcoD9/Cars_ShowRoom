@@ -27,17 +27,16 @@ export default defineComponent({
 
 <style scoped>
 .car-details-view {
-  max-width: 80%;
+  max-width: 100%;
   margin: 2rem auto;
   padding: 1.5rem;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 h1 {
-  color: #2c3e50;
+  color: var(--tertiary-text);
   margin-bottom: 1.5rem;
   font-size: 2.2em;
 }

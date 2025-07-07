@@ -7,8 +7,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <header>
       <div class="wrapper">
         <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
+          <RouterLink class="link" to="/">Home</RouterLink>
+          <RouterLink class="link" to="/about">About</RouterLink>
         </nav>
       </div>
     </header>
@@ -21,9 +21,37 @@ import { RouterLink, RouterView } from 'vue-router'
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
   display: flex;
   flex-direction: column;
+}
+
+.wrapper {
+  background-color: var(--secondary-text);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.link {
+  margin: auto;
+  padding: auto;
+  color: var(--primary-text);
+  text-decoration: none;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.link:hover {
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  color: var(--tertiary-text);
 }
 </style>
